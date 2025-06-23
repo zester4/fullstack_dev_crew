@@ -1,0 +1,25 @@
+[project]
+name = "fullstack_dev_crew"
+version = "0.1.0"
+description = "fullstack_dev_crew using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.130.0,<1.0.0",
+    "google-genai>=1.21.1",
+    "google-generativeai>=0.8.5",
+]
+
+[project.scripts]
+fullstack_dev_crew = "fullstack_dev_crew.main:run"
+run_crew = "fullstack_dev_crew.main:run"
+train = "fullstack_dev_crew.main:train"
+replay = "fullstack_dev_crew.main:replay"
+test = "fullstack_dev_crew.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

@@ -1,0 +1,321 @@
+# src/fullstack_dev_crew/config/tasks.yaml
+
+architecture_design:
+  description: >
+    Analyze the application requirements for {app_description} and create a comprehensive 
+    technical architecture document. Your analysis should include:
+    
+    1. **Requirements Analysis**:
+       - Functional requirements breakdown
+       - Non-functional requirements (performance, security, scalability)
+       - User personas and user journey mapping
+       - Technical constraints and assumptions
+    
+    2. **System Architecture Design**:
+       - High-level system architecture diagram
+       - Database schema design with relationships
+       - API design and endpoint specifications
+       - Authentication and authorization strategy
+       - State management architecture
+       - File structure and project organization
+    
+    3. **Technology Stack Selection**:
+       - Frontend framework choice (React/Next.js vs React Native)
+       - Backend technology and frameworks
+       - Database selection and justification
+       - Third-party services and integrations
+       - Development and deployment tools
+    
+    4. **Implementation Roadmap**:
+       - Development phases and milestones
+       - Dependencies and critical path analysis
+       - Risk assessment and mitigation strategies
+       - Performance and scalability considerations
+    
+    Use SerperDevTool to research latest best practices and technologies.
+    Create detailed documentation that other team members can follow.
+  expected_output: >
+    A comprehensive technical architecture document (15-20 pages) including:
+    - Executive summary and project overview
+    - Detailed system architecture diagrams
+    - Complete database schema with ER diagrams
+    - API specifications and data flow diagrams
+    - Technology stack justification
+    - Security architecture and authentication flows
+    - Deployment architecture and infrastructure design
+    - Development roadmap with clear phases
+    - Risk analysis and mitigation strategies
+    - Performance benchmarks and scalability plans
+    
+    All diagrams should be in Mermaid format for easy rendering.
+  agent: solution_architect
+  output_file: docs/architecture.md
+
+backend_development:
+  description: >
+    Develop a complete, production-ready backend for {app_description} based on 
+    the architecture specifications. Your implementation must include:
+    
+    1. **API Development**:
+       - RESTful API endpoints following OpenAPI specifications
+       - GraphQL implementation if specified in architecture
+       - Proper HTTP status codes and error handling
+       - Request validation and sanitization
+       - Rate limiting and security middleware
+    
+    2. **Database Implementation**:
+       - Complete database schema creation scripts
+       - Migration files for database versioning
+       - Indexes for optimal query performance
+       - Data seeding scripts for development/testing
+    
+    3. **Authentication & Authorization**:
+       - JWT-based authentication system
+       - Role-based access control (RBAC)
+       - Password hashing and security measures
+       - Session management and refresh tokens
+    
+    4. **Business Logic & Services**:
+       - Service layer implementation
+       - Data validation and business rules
+       - File upload and processing capabilities
+       - Email/notification services integration
+    
+    5. **Testing & Documentation**:
+       - Unit tests with >90% coverage
+       - Integration tests for all endpoints
+       - API documentation with examples
+       - Environment configuration management
+    
+    Use FileWriterTool to create all backend files and FileReadTool to read 
+    architecture specifications. Use SerperDevTool for latest security practices.
+  expected_output: >
+    Complete backend codebase including:
+    - Fully functional API server with all endpoints
+    - Database models and migration scripts
+    - Authentication and authorization middleware
+    - Comprehensive error handling and logging
+    - Input validation and sanitization
+    - Unit and integration test suites
+    - API documentation (Swagger/OpenAPI)
+    - Docker configuration for containerization
+    - Environment configuration files
+    - README with setup and deployment instructions
+    
+    All code must be production-ready with proper error handling,
+    logging, security measures, and comprehensive testing.
+  agent: backend_developer
+  context:
+    - architecture_design
+  output_file: backend/README.md
+
+frontend_development:
+  description: >
+    Create a complete, pixel-perfect frontend for {app_description} based on 
+    the architecture and backend specifications. Your implementation must include:
+    
+    1. **User Interface Development**:
+       - Responsive design for all screen sizes
+       - Modern UI components with consistent design system
+       - Intuitive navigation and user flows
+       - Loading states and error boundaries
+       - Accessibility compliance (WCAG 2.1)
+    
+    2. **State Management**:
+       - Global state management setup
+       - API integration with proper error handling
+       - Caching strategies for performance
+       - Optimistic updates for better UX
+    
+    3. **Authentication Integration**:
+       - Login/registration forms with validation
+       - Protected routes and authorization checks
+       - Token management and refresh logic
+       - User profile and settings pages
+    
+    4. **Core Features Implementation**:
+       - All features specified in the requirements
+       - Real-time updates if applicable
+       - File upload with progress indicators
+       - Form handling with validation
+       - Search and filtering capabilities
+    
+    5. **Performance Optimization**:
+       - Code splitting and lazy loading
+       - Image optimization and lazy loading
+       - Bundle size optimization
+       - SEO optimization (for web apps)
+    
+    6. **Testing**:
+       - Component testing with React Testing Library
+       - End-to-end testing setup
+       - Visual regression testing
+       - Performance testing
+    
+    Use FileWriterTool to create all frontend files, FileReadTool to read 
+    specifications, and SerperDevTool for latest UI/UX best practices.
+  expected_output: >
+    Complete frontend application including:
+    - Fully functional user interface with all features
+    - Responsive design working on all devices
+    - Complete authentication and user management
+    - All business logic features implemented
+    - Comprehensive component library
+    - State management with API integration
+    - Error handling and loading states
+    - Accessibility features implemented
+    - Performance optimizations applied
+    - Comprehensive test suite
+    - Storybook documentation for components
+    - Build and deployment configuration
+    - README with setup and development instructions
+    
+    The application must be production-ready with no placeholders
+    or dummy content. All features must be fully functional.
+  agent: frontend_developer
+  context:
+    - architecture_design
+    - backend_development
+  output_file: frontend/README.md
+
+deployment_setup:
+  description: >
+    Create a complete deployment and infrastructure setup for {app_description} 
+    that ensures scalability, reliability, and security in production. Include:
+    
+    1. **Containerization**:
+       - Docker configuration for all services
+       - Multi-stage builds for optimization
+       - Docker Compose for local development
+       - Health checks and restart policies
+    
+    2. **CI/CD Pipeline**:
+       - GitHub Actions workflows for automation
+       - Automated testing and code quality checks
+       - Security scanning and vulnerability assessment
+       - Automated deployment to staging and production
+    
+    3. **Cloud Infrastructure**:
+       - Infrastructure as Code (Terraform/CloudFormation)
+       - Load balancers and auto-scaling groups
+       - Database setup with backups and monitoring
+       - CDN configuration for static assets
+       - SSL certificate management
+    
+    4. **Monitoring & Logging**:
+       - Application performance monitoring
+       - Error tracking and alerting
+       - Log aggregation and analysis
+       - Health checks and uptime monitoring
+    
+    5. **Security Configuration**:
+       - Firewall and security groups
+       - Secrets management
+       - Database security and encryption
+       - API rate limiting and DDoS protection
+    
+    6. **Backup & Recovery**:
+       - Automated database backups
+       - Disaster recovery procedures
+       - Data retention policies
+       - Recovery testing procedures
+    
+    Use FileWriterTool to create all deployment files, FileReadTool to understand 
+    the application architecture, and SerperDevTool for latest DevOps practices.
+  expected_output: >
+    Complete deployment infrastructure including:
+    - Docker containers for all services
+    - Docker Compose for local development
+    - CI/CD pipeline with GitHub Actions
+    - Infrastructure as Code templates
+    - Kubernetes manifests (if applicable)
+    - Monitoring and logging configuration
+    - Security scanning and compliance checks
+    - Backup and recovery scripts
+    - Environment-specific configurations
+    - Deployment documentation and runbooks
+    - Disaster recovery procedures
+    - Performance benchmarking scripts
+    - Cost optimization recommendations
+    
+    All infrastructure must be production-ready with proper
+    security, monitoring, and scalability measures in place.
+  agent: devops_engineer
+  context:
+    - architecture_design
+    - backend_development
+    - frontend_development
+  output_file: deployment/README.md
+
+quality_assurance:
+  description: >
+    Implement a comprehensive testing and quality assurance strategy for 
+    {app_description} ensuring the application meets the highest quality 
+    standards before deployment. Your implementation must include:
+    
+    1. **Test Strategy Development**:
+       - Comprehensive test plan covering all features
+       - Test case documentation with acceptance criteria
+       - Risk-based testing approach
+       - Performance testing strategy
+    
+    2. **Automated Testing Implementation**:
+       - Unit tests for backend services (>90% coverage)
+       - Integration tests for API endpoints
+       - Frontend component testing
+       - End-to-end testing scenarios
+       - Visual regression testing
+       - Performance and load testing
+    
+    3. **Quality Gates**:
+       - Code quality metrics and thresholds
+       - Security vulnerability scanning
+       - Accessibility testing and compliance
+       - Cross-browser and cross-device testing
+    
+    4. **Test Data Management**:
+       - Test data creation and management
+       - Database seeding for consistent testing
+       - Mock services for external dependencies
+       - Test environment configuration
+    
+    5. **Reporting and Analytics**:
+       - Test execution reports
+       - Coverage reports and metrics
+       - Performance benchmarking results
+       - Quality dashboards and monitoring
+    
+    6. **Continuous Testing Integration**:
+       - Integration with CI/CD pipeline
+       - Automated test execution on code changes
+       - Quality gates in deployment process
+       - Feedback loops for development team
+    
+    Use FileWriterTool to create test files, FileReadTool to understand 
+    application functionality, and SerperDevTool for latest testing practices.
+  expected_output: >
+    Comprehensive testing framework including:
+    - Complete test suite with >90% code coverage
+    - End-to-end testing scenarios for all user flows
+    - Performance testing scripts and benchmarks
+    - Security testing and vulnerability reports
+    - Accessibility testing and compliance reports
+    - Cross-browser testing configuration
+    - Test data management and seeding scripts
+    - CI/CD integration for automated testing
+    - Quality metrics dashboard and reporting
+    - Test documentation and maintenance guides
+    - Bug tracking and resolution procedures
+    - Performance monitoring and alerting
+    - User acceptance testing procedures
+    
+    All tests must be automated and integrated into the
+    development workflow with clear quality gates and
+    comprehensive reporting mechanisms.
+  agent: qa_engineer
+  context:
+    - architecture_design
+    - backend_development
+    - frontend_development
+    - deployment_setup
+  output_file: testing/README.md
